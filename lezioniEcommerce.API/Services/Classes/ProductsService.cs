@@ -3,9 +3,7 @@ using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Repos.Interfaces;
 using lezioniEcommerce.API.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace lezioniEcommerce.API.Services.Classes
 {

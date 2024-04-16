@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Repos.Interfaces;

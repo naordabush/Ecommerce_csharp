@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using lezioniEcommerce.API.DTO;
+﻿using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Services.Classes;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +15,6 @@ namespace lezioniEcommerce.API.Controllers
         {
             _userService = userService;
         }
-
 
         [HttpGet]
         public async Task<ActionResult<List<READ_USER_DTO>>> GetAllUsers()
@@ -62,8 +60,6 @@ namespace lezioniEcommerce.API.Controllers
                 return BadRequest($"Failed to update user: {ex.Message} Inner Exception: {ex.InnerException.Message}");
             }
         }
-
-
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)

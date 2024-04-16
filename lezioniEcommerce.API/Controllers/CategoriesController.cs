@@ -1,9 +1,6 @@
 ﻿using lezioniEcommerce.API.Services.Interfaces;
 using lezioniEcommerce.API.DTO;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace lezioniEcommerce.API.Controllers
 {
