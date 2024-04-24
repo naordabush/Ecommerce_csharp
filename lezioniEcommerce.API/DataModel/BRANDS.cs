@@ -8,6 +8,7 @@ namespace lezioniEcommerce.API.Controllers.DataModel
         [Key]
         [Column(TypeName = "int")]
         public int BRAND_ID { get; set; }
+
         [Column(TypeName = "nvarchar(50)")]
         public string BRAND_NAME { get; set; }
     }

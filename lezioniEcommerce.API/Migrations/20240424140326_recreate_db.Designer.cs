@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lezioniEcommerce.API.Controllers.DataModel;
 
@@ -10,9 +11,11 @@ using lezioniEcommerce.API.Controllers.DataModel;
 namespace lezioniEcommerce.API.Migrations
 {
     [DbContext(typeof(DB_ECOMMERCEContext))]
-    partial class DB_ECOMMERCEContextModelSnapshot : ModelSnapshot
+    [Migration("20240424140326_recreate_db")]
+    partial class recreate_db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
