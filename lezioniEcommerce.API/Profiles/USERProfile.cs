@@ -15,7 +15,10 @@ namespace lezioniEcommerce.API.Profiles
             // write DB
             CreateMap<WRITE_USER_DTO, USERS>();
             CreateMap<READ_USER_DTO, USERS>();
-            
+
+            // Additional mapping for login response DTO
+            CreateMap<USERS, LOGIN_REQUEST_DTO>(); 
+
         }
     }
 }

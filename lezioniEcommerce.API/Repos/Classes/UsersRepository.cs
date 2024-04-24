@@ -1,9 +1,6 @@
 ﻿using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.Repos.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace lezioniEcommerce.API.Repos.Classes
 {
@@ -47,5 +44,17 @@ namespace lezioniEcommerce.API.Repos.Classes
                 await _context.SaveChangesAsync();
             }
         }
+
+        //--------------FindByUsername-Register-Login-Logout------------------
+        public async Task<USERS> FindByUsername(string username)
+        {
+            return await _context.USERS.FirstOrDefaultAsync(u => u.USER_USERNAME == username);
+        }
+
+
+
+
+
+
     }
 }

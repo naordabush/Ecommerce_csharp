@@ -40,7 +40,7 @@ builder.Services.AddScoped<ICartsRepository, CartsRepository>();
 builder.Services.AddScoped<ICartItemsRepository, CartItemsRepository>();
 
 // Register services
-builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped</*IUsersService,*/ UsersService>();
 builder.Services.AddScoped<IProductsService, ProductsService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IProductsCategoriesService, ProductsCategoriesService>();

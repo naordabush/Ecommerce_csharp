@@ -10,6 +10,8 @@ namespace lezioniEcommerce.API.Repos.Interfaces
         Task AddUser(USERS user);
         Task UpdateUser(USERS updatedUserDto);
         Task DeleteUser(int id);
+        Task<USERS> FindByUsername(string username);
+
     }
 }
 

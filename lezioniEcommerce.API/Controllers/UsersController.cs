@@ -23,7 +23,7 @@ namespace lezioniEcommerce.API.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getbyid/{id}")]
         public async Task<ActionResult<READ_USER_DTO>> GetUserById(int id)
         {
             var user = await _userService.GetUserById(id);
@@ -61,19 +61,45 @@ namespace lezioniEcommerce.API.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("deletebyid/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
             try { 
             await _userService.DeleteUser(id);
             return Ok("User deleted successfully");
-
         }
          catch (Exception ex)
-         {
+        {
              return BadRequest($"Failed to delete user: {ex.Message} Inner Exception: {ex.InnerException.Message}");
-    }
-}
+            }    
+        }
+
+        [HttpGet("getbyusername/{username}")]
+        public async Task<ActionResult<READ_USER_DTO>> FindUserByUsername(string username)
+        {
+            var user = await _userService.FindUserByUsername(username);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            return Ok(user);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login([FromBody] LOGIN_REQUEST_DTO loginRequest)
+        {
+            var loginResult = await _userService.Login(loginRequest.Username, loginRequest.Password);
+
+            if (loginResult)
+            {
+                return Ok("Login successful");
+            }
+            else
+            {
+                return BadRequest("Username or password is incorrect");
+            }
+        }
+
 
     }
 }
