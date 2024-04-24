@@ -1,0 +1,9 @@
+TODO:
+* i need to create read/write dtos of products/categories/products_categories.
+* i need to create mappres for them 3 in total.
+* controler and service are working with dtos. repos are working with data models.
+* inside product_categories dto i need to use READ dtos of producst and of categories as the types.
+* update the program.cs to incluse the new mapper and the new service interfaces
+* better to start with products and categories first.
+---------------------------------------------------------------------------------------------------------------------------
+

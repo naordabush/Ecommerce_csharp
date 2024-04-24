@@ -213,21 +213,21 @@ namespace lezioniEcommerce.API.Migrations
 
             modelBuilder.Entity("lezioniEcommerce.API.DataModel.PRODUCTS_CATEGORIES", b =>
                 {
-                    b.HasOne("lezioniEcommerce.API.DataModel.CATEGORIES", "CATEGORY")
+                    b.HasOne("lezioniEcommerce.API.DataModel.CATEGORIES", "Category")
                         .WithMany("ProductsCategories")
                         .HasForeignKey("CATEGORY_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("lezioniEcommerce.API.Controllers.DataModel.PRODUCTS", "PRODUCT")
+                    b.HasOne("lezioniEcommerce.API.Controllers.DataModel.PRODUCTS", "Product")
                         .WithMany("ProductsCategories")
                         .HasForeignKey("PRODUCT_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CATEGORY");
+                    b.Navigation("Category");
 
-                    b.Navigation("PRODUCT");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("lezioniEcommerce.API.Controllers.DataModel.PRODUCTS", b =>
