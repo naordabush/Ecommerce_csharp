@@ -29,20 +29,13 @@ namespace lezioniEcommerce.API.Services.Classes
             var user = await _usersRepository.GetUserById(id);
             return _mapper.Map<READ_USER_DTO>(user);
         }
-        public async Task<bool> AddUser(WRITE_USER_DTO userDto)
+        public async Task AddUser(WRITE_USER_DTO userDto)
         {
-            var existingUser = await FindUserByUsername(userDto.USER_USERNAME);
-            if (existingUser != null)
-            {
-                return false; // User already exists
-            }
             var user = _mapper.Map<USERS>(userDto);
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.USER_PASSWORD);
             user.USER_PASSWORD = hashedPassword;
             await _usersRepository.AddUser(user);
-            return true; // User added successfully
         }
-
 
         public async Task UpdateUser(READ_USER_DTO updatedUserDto)
         {

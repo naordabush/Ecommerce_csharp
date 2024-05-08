@@ -38,15 +38,8 @@ namespace lezioniEcommerce.API.Controllers
         {
             try
             {
-                var userAdded = await _userService.AddUser(userDto);
-                if (userAdded)
-                {
-                    return Ok(userDto); // User added successfully
-                }
-                else
-                {
-                    return BadRequest($"Username {userDto.USER_USERNAME} already exists");
-                }
+                await _userService.AddUser(userDto);
+                return Ok(userDto);
             }
             catch (Exception ex)
             {
