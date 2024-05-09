@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿
 using lezioniEcommerce.API.Controllers.DataModel;
 
 namespace lezioniEcommerce.API.Repos.Interfaces
@@ -11,5 +10,6 @@ namespace lezioniEcommerce.API.Repos.Interfaces
         Task AddCart(CARTS cart);
         Task UpdateCart(CARTS updatedCart);
         Task DeleteCart(int id);
+        Task<CARTS> GetCartByUserId(int userId);
     }
 }

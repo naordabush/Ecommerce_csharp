@@ -33,6 +33,17 @@ namespace lezioniEcommerce.API.Controllers
             return Ok(cart);
         }
 
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<READ_CART_DTO>> GetCartByUserId(int userId)
+        {
+            var cart = await _cartsService.GetCartByUserId(userId);
+            if (cart == null)
+            {
+                return BadRequest("Cart not found for user");
+            }
+            return Ok(cart);
+        }
+
         [HttpPost]
         public async Task<ActionResult<List<READ_CART_DTO>>> AddCart(WRITE_CART_DTO cart)
         {

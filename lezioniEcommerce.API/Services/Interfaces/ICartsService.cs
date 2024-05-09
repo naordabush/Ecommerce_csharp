@@ -11,5 +11,6 @@ namespace lezioniEcommerce.API.Services.Interfaces
         Task AddCart(WRITE_CART_DTO cart);
         Task UpdateCart(WRITE_CART_DTO updatedCart);
         Task DeleteCart(int id);
+        Task<READ_CART_DTO> GetCartByUserId(int userId);
     }
 }

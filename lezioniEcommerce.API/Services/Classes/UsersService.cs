@@ -10,11 +10,13 @@ namespace lezioniEcommerce.API.Services.Classes
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _usersRepository;
+//      private readonly ICartsRepository _cartsRepository;
         private readonly IMapper _mapper;
 
-        public UsersService(IUsersRepository usersRepository, IMapper mapper)
+        public UsersService(IUsersRepository usersRepository,/* ICartsRepository cartsRepository,*/ IMapper mapper)
         {
             _usersRepository = usersRepository;
+        //  _cartsRepository = cartsRepository;
             _mapper = mapper;
         }
 
@@ -40,6 +42,10 @@ namespace lezioniEcommerce.API.Services.Classes
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.USER_PASSWORD);
             user.USER_PASSWORD = hashedPassword;
             await _usersRepository.AddUser(user);
+
+            // Creating a cart for the registered user
+            // await _cartsRepository.AddCart(user.USER_ID);
+
             return true; // User added successfully
         }
 

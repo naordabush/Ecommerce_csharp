@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using lezioniEcommerce.API.Controllers.DataModel;
+﻿using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.Repos.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,5 +59,14 @@ namespace lezioniEcommerce.API.Repos.Classes
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<CARTS> GetCartByUserId(int userId)
+        {
+            return await _context.CARTS
+                .Include(c => c.USER)
+                .FirstOrDefaultAsync(c => c.USER_ID == userId);
+        }
+
+
     }
 }

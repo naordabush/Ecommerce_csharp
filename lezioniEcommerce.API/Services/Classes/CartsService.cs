@@ -28,6 +28,11 @@ namespace lezioniEcommerce.API.Services.Classes
             var cart = await _cartsRepository.GetCartById(id);
             return _mapper.Map<READ_CART_DTO>(cart);
         }
+        public async Task<READ_CART_DTO> GetCartByUserId(int userId)
+        {
+            var cart = await _cartsRepository.GetCartByUserId(userId);
+            return _mapper.Map<READ_CART_DTO>(cart);
+        }
 
         public async Task AddCart(WRITE_CART_DTO cart)
         {
