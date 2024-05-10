@@ -8,7 +8,7 @@ namespace lezioniEcommerce.API.Controllers.DataModel
         public DB_ECOMMERCEContext(DbContextOptions<DB_ECOMMERCEContext> options) : base(options) { }
 
         public DbSet<PRODUCTS> PRODUCTS { get; set; }
-        public DbSet<BRANDS> BRANDS { get; set; }
+    //    public DbSet<BRANDS> BRANDS { get; set; }
         public DbSet<CARTS> CARTS { get; set; }
         public DbSet<CART_ITEMS> CART_ITEMS { get; set; }
         public DbSet<USERS> USERS { get; set; }

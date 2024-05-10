@@ -24,7 +24,7 @@ namespace lezioniEcommerce.API.Repos.Classes
         {
             return await _context.CART_ITEMS
             .Include(ci => ci.PRODUCT)
-                .ThenInclude(p => p.BRAND)
+        //        .ThenInclude(p => p.BRAND)
                 .Include(ci => ci.CART)
                 .ThenInclude(c => c.USER)
                 .ToListAsync();
@@ -39,7 +39,7 @@ namespace lezioniEcommerce.API.Repos.Classes
         {
             return await _context.CART_ITEMS
                 .Include(ci => ci.PRODUCT)
-                .ThenInclude(p => p.BRAND)
+        //        .ThenInclude(p => p.BRAND)
                 .Include(ci => ci.CART)
                 .ThenInclude(c => c.USER)
                 .FirstOrDefaultAsync(ci => ci.CART_ITEM_ID == id);

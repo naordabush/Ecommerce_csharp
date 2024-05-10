@@ -22,12 +22,12 @@ namespace lezioniEcommerce.API.Controllers.DataModel
         [Column(TypeName = "bit")]
         public bool PRODUCT_ISACTIVE { get; set; }
 
-        [Required]
-        [Column(TypeName = "int")]
-        public int BRAND_ID { get; set; }
+        //[Required]
+        //[Column(TypeName = "int")]
+        //public int BRAND_ID { get; set; }
 
-        [ForeignKey("BRAND_ID")]
-        public BRANDS BRAND { get; set; }
+        //[ForeignKey("BRAND_ID")]
+        //public BRANDS BRAND { get; set; }
 
         public ICollection<PRODUCTS_CATEGORIES> ProductsCategories { get; set; }
     }

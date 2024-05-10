@@ -14,29 +14,28 @@ namespace lezioniEcommerce.API.Repos.Classes
             _context = context;
         }
 
-        //public async Task<List<PRODUCTS>> GetAllProducts()
-        //{
-        //    return await _context.PRODUCTS.ToListAsync();
-        //}
         public async Task<List<PRODUCTS>> GetAllProducts()
         {
-            return await _context.PRODUCTS
-                .Include(p => p.BRAND)
-                .ToListAsync();
+            return await _context.PRODUCTS.ToListAsync();
+        }
+
+        //public async Task<List<PRODUCTS>> GetAllProducts()
+        //{
+        //    return await _context.PRODUCTS
+        //        .Include(p => p.BRAND)
+        //        .ToListAsync();
+        //}
+        public async Task<PRODUCTS> GetProductById(int id)
+        {
+            return await _context.PRODUCTS.FindAsync(id);
         }
 
         //public async Task<PRODUCTS> GetProductById(int id)
         //{
-        //    return await _context.PRODUCTS.FindAsync(id);
+        //    return await _context.PRODUCTS
+        //        .Include(p => p.BRAND)
+        //        .FirstOrDefaultAsync(p => p.PRODUCT_ID == id);
         //}
-
-
-        public async Task<PRODUCTS> GetProductById(int id)
-        {
-            return await _context.PRODUCTS
-                .Include(p => p.BRAND)
-                .FirstOrDefaultAsync(p => p.PRODUCT_ID == id);
-        }
         public async Task AddProduct(PRODUCTS product)
         {
             _context.PRODUCTS.Add(product);

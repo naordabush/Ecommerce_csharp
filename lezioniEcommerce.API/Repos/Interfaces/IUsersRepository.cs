@@ -7,7 +7,7 @@ namespace lezioniEcommerce.API.Repos.Interfaces
     {
         Task<List<USERS>> GetAllUsers();
         Task<USERS> GetUserById(int id);
-        Task AddUser(USERS user);
+        Task register(USERS user);
         Task UpdateUser(USERS updatedUserDto);
         Task DeleteUser(int id);
         Task<USERS> FindByUsername(string username);

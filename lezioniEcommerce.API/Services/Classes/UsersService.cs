@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.DTO;
-using lezioniEcommerce.API.Repos.Classes;
 using lezioniEcommerce.API.Repos.Interfaces;
 using lezioniEcommerce.API.Services.Interfaces;
 
@@ -10,13 +9,13 @@ namespace lezioniEcommerce.API.Services.Classes
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _usersRepository;
-//      private readonly ICartsRepository _cartsRepository;
+      private readonly ICartsRepository _cartsRepository;
         private readonly IMapper _mapper;
 
-        public UsersService(IUsersRepository usersRepository,/* ICartsRepository cartsRepository,*/ IMapper mapper)
+        public UsersService(IUsersRepository usersRepository, ICartsRepository cartsRepository, IMapper mapper)
         {
             _usersRepository = usersRepository;
-        //  _cartsRepository = cartsRepository;
+            _cartsRepository = cartsRepository;
             _mapper = mapper;
         }
 
@@ -31,7 +30,7 @@ namespace lezioniEcommerce.API.Services.Classes
             var user = await _usersRepository.GetUserById(id);
             return _mapper.Map<READ_USER_DTO>(user);
         }
-        public async Task<bool> AddUser(WRITE_USER_DTO userDto)
+        public async Task<bool> register(WRITE_USER_DTO userDto)
         {
             var existingUser = await FindUserByUsername(userDto.USER_USERNAME);
             if (existingUser != null)
@@ -41,11 +40,12 @@ namespace lezioniEcommerce.API.Services.Classes
             var user = _mapper.Map<USERS>(userDto);
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.USER_PASSWORD);
             user.USER_PASSWORD = hashedPassword;
-            await _usersRepository.AddUser(user);
+            await _usersRepository.register(user);
 
             // Creating a cart for the registered user
-            // await _cartsRepository.AddCart(user.USER_ID);
-
+            var cart = new CARTS { USER_ID = user.USER_ID };
+            await _cartsRepository.AddCart(cart);
+            Console.WriteLine($"New cart created for user {user.USER_ID}: {cart.CART_ID}");
             return true; // User added successfully
         }
 
@@ -88,10 +88,32 @@ namespace lezioniEcommerce.API.Services.Classes
             var user = await FindUserByUsername(username);
             if (user == null)
             {
-                return false;
+                return false; // User not found
             }
-            return BCrypt.Net.BCrypt.Verify(password, user.USER_PASSWORD);
+
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(password, user.USER_PASSWORD);
+            if (!isPasswordCorrect)
+            {
+                return false; // Password incorrect
+            }
+
+            // Retrieve and set the cart ID
+            var cart = await _cartsRepository.GetCartByUserId(user.USER_ID);
+            if (cart != null)
+            {
+                Console.WriteLine($"Cart found for user {user.USER_ID}: {cart.CART_ID}");
+            }
+            else
+            {
+                // Create a new cart and associate it with the user
+                cart = new CARTS { USER_ID = user.USER_ID};
+                await _cartsRepository.AddCart(cart);
+                Console.WriteLine($"New cart created for user {user.USER_ID}: {cart.CART_ID}");
+            }
+
+            return true;
         }
+
 
 
 

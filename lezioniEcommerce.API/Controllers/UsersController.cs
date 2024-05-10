@@ -34,11 +34,11 @@ namespace lezioniEcommerce.API.Controllers
             return Ok(user);
         }
         [HttpPost]
-        public async Task<ActionResult<WRITE_USER_DTO>> AddUser(WRITE_USER_DTO userDto)
+        public async Task<ActionResult<WRITE_USER_DTO>> register(WRITE_USER_DTO userDto)
         {
             try
             {
-                var userAdded = await _userService.AddUser(userDto);
+                var userAdded = await _userService.register(userDto);
                 if (userAdded)
                 {
                     return Ok(userDto); // User added successfully

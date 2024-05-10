@@ -23,7 +23,7 @@ namespace lezioniEcommerce.API.Repos.Classes
             return await _context.USERS.FindAsync(id);
         }
 
-        public async Task AddUser(USERS user)
+        public async Task register(USERS user)
         {
             _context.USERS.Add(user);
             await _context.SaveChangesAsync();

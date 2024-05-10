@@ -33,7 +33,7 @@ builder.Services.AddDbContext<DB_ECOMMERCEContext>(options =>
 // Register repositories
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
-builder.Services.AddScoped<IBrandsRepository, BrandsRepository>();
+//builder.Services.AddScoped<IBrandsRepository, BrandsRepository>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<IProductsCategoriesRepository, ProductsCategoriesRepository>();
 builder.Services.AddScoped<ICartsRepository, CartsRepository>();
@@ -44,7 +44,7 @@ builder.Services.AddScoped</*IUsersService,*/ UsersService>();
 builder.Services.AddScoped<IProductsService, ProductsService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IProductsCategoriesService, ProductsCategoriesService>();
-builder.Services.AddScoped<IBrandsService, BrandsService>();
+//builder.Services.AddScoped<IBrandsService, BrandsService>();
 builder.Services.AddScoped<ICartsService, CartsService>();
 builder.Services.AddScoped<ICartItemsService, CartItemsService>();
 
@@ -55,7 +55,7 @@ var mapperConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new PRODUCTProfile());
     mc.AddProfile(new CATEGORYProfile());
     mc.AddProfile(new PRODUCTCATEGORYProfile());
-    mc.AddProfile(new BRANDProfile());
+    //mc.AddProfile(new BRANDProfile());
     mc.AddProfile(new CARTProfile());
     mc.AddProfile(new CARTITEMProfile());
 });
