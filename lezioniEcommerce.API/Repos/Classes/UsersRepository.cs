@@ -45,16 +45,10 @@ namespace lezioniEcommerce.API.Repos.Classes
             }
         }
 
-        //--------------FindByUsername-Register-Login-Logout------------------
+        //--------------FindByUsername-Register-Logout------------------
         public async Task<USERS> FindByUsername(string username)
         {
             return await _context.USERS.FirstOrDefaultAsync(u => u.USER_USERNAME == username);
         }
-
-
-
-
-
-
     }
 }

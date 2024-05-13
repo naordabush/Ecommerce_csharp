@@ -19,8 +19,7 @@ namespace lezioniEcommerce.API.Services.Classes
             _mapper = mapper;
         }
         //--------------FindByUsername-Register-Login-Logout------------------
-
-        public async Task<(bool, string)> Login(string username, string password)
+        public async Task<(bool, READ_USER_DTO)> Login(string username, string password)
         {
             var user = await FindUserByUsername(username);
             if (user == null)
@@ -51,7 +50,19 @@ namespace lezioniEcommerce.API.Services.Classes
                 Console.WriteLine($"New cart created for user {user.USER_ID}: {cart.CART_ID}");
             }
 
-            return (true, token);
+            // Create a new user DTO with the token and cart ID
+            var userDto = new READ_USER_DTO
+            {
+                USER_ID = user.USER_ID,
+                USER_USERNAME = user.USER_USERNAME,
+                USER_FIRSTNAME = user.USER_FIRSTNAME,
+                USER_LASTNAME = user.USER_LASTNAME,
+                USER_EMAIL = user.USER_EMAIL,
+                TOKEN = token,
+                CART_ID = cart.CART_ID
+            };
+
+            return (true, userDto);
         }
         //-------------------------------------------------------------------------
         public async Task<bool> register(WRITE_USER_DTO userDto)

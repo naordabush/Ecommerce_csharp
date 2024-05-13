@@ -100,7 +100,7 @@ namespace lezioniEcommerce.API.Controllers
 
             if (success)
             {
-                return Ok(new { Token = token });
+                return Ok(token);
             }
             else
             {
