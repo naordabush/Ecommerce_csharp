@@ -10,6 +10,6 @@ namespace lezioniEcommerce.API.Services.Interfaces
         Task UpdateUser(READ_USER_DTO updatedUserDto);
         Task DeleteUser(int id);
         Task<READ_USER_DTO> FindUserByUsername(string username);
-        Task<bool> Login(string username, string password);
+        Task<(bool, string)> Login(string username, string password);
     }
 }

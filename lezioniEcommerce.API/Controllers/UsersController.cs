@@ -2,7 +2,6 @@
 using lezioniEcommerce.API.Services.Classes;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace lezioniEcommerce.API.Controllers
 {
     [Route("api/[controller]")]
@@ -33,8 +32,9 @@ namespace lezioniEcommerce.API.Controllers
             }
             return Ok(user);
         }
+
         [HttpPost]
-        public async Task<ActionResult<WRITE_USER_DTO>> register(WRITE_USER_DTO userDto)
+        public async Task<ActionResult<WRITE_USER_DTO>> Register(WRITE_USER_DTO userDto)
         {
             try
             {
@@ -45,15 +45,14 @@ namespace lezioniEcommerce.API.Controllers
                 }
                 else
                 {
-                    return BadRequest($"Username {userDto.USER_USERNAME} already exists");
+                    return BadRequest($"Username: \"{userDto.USER_USERNAME}\" is already exists");
                 }
             }
             catch (Exception ex)
             {
-                return BadRequest($"Failed to add user: {ex.Message} Inner Exception: {ex.InnerException.Message}");
+                return BadRequest($"Failed to add user: {ex.Message} Inner Exception: {ex.InnerException?.Message}");
             }
         }
-
 
         [HttpPut]
         public async Task<ActionResult<READ_USER_DTO>> UpdateUser(READ_USER_DTO updatedUserDTO)
@@ -65,21 +64,22 @@ namespace lezioniEcommerce.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest($"Failed to update user: {ex.Message} Inner Exception: {ex.InnerException.Message}");
+                return BadRequest($"Failed to update user: {ex.Message} Inner Exception: {ex.InnerException?.Message}");
             }
         }
 
         [HttpDelete("deletebyid/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            try { 
-            await _userService.DeleteUser(id);
-            return Ok("User deleted successfully");
-        }
-         catch (Exception ex)
-        {
-             return BadRequest($"Failed to delete user: {ex.Message} Inner Exception: {ex.InnerException.Message}");
-            }    
+            try
+            {
+                await _userService.DeleteUser(id);
+                return Ok("User deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed to delete user: {ex.Message} Inner Exception: {ex.InnerException?.Message}");
+            }
         }
 
         [HttpGet("getbyusername/{username}")]
@@ -96,18 +96,16 @@ namespace lezioniEcommerce.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login([FromBody] LOGIN_REQUEST_DTO loginRequest)
         {
-            var loginResult = await _userService.Login(loginRequest.Username, loginRequest.Password);
+            var (success, token) = await _userService.Login(loginRequest.Username, loginRequest.Password);
 
-            if (loginResult)
+            if (success)
             {
-                return Ok("Login successful");
+                return Ok(new { Token = token });
             }
             else
             {
                 return BadRequest("Username or password is incorrect");
             }
         }
-
-
     }
 }
