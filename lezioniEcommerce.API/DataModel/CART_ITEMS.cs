@@ -11,7 +11,7 @@ namespace lezioniEcommerce.API.DataModel
         public int CART_ITEM_ID { get; set; }
 
         [Column(TypeName = "int")]
-        public int CART_QUANTITY { get; set; }
+        public int CART_ITEM_QUANTITY { get; set; }
         //-----------------------------------------
 
         [Required]

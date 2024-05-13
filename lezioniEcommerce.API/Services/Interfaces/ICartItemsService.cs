@@ -6,7 +6,7 @@ namespace lezioniEcommerce.API.Services.Interfaces
     {
         Task<List<READ_CART_ITEM_DTO>> GetAllCartItems();
         Task<READ_CART_ITEM_DTO> GetCartItemById(int id);
-        Task AddCartItem(WRITE_CART_ITEM_DTO cartItem);
+        Task AddCartItem(int cartId, int productId, int quantity);
         Task UpdateCartItem(WRITE_CART_ITEM_DTO updatedCartItem);
         Task DeleteCartItem(int id);
     }

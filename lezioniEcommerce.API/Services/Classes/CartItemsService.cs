@@ -29,11 +29,22 @@ namespace lezioniEcommerce.API.Services.Classes
             return _mapper.Map<READ_CART_ITEM_DTO>(cartItem);
         }
 
-        public async Task AddCartItem(WRITE_CART_ITEM_DTO cartItem)
+        //public async Task AddCartItem(WRITE_CART_ITEM_DTO cartItem)
+        //{
+        //    var mappedCartItem = _mapper.Map<CART_ITEMS>(cartItem);
+        //    await _cartItemsRepository.AddCartItem(mappedCartItem);
+        //}
+        public async Task AddCartItem(int cartId, int productId, int quantity)
         {
-            var mappedCartItem = _mapper.Map<CART_ITEMS>(cartItem);
-            await _cartItemsRepository.AddCartItem(mappedCartItem);
+            var cartItem = new CART_ITEMS
+            {
+                CART_ID = cartId,
+                PRODUCT_ID = productId,
+                CART_ITEM_QUANTITY = quantity
+            };
+            await _cartItemsRepository.AddCartItem(cartItem);
         }
+        
 
         public async Task UpdateCartItem(WRITE_CART_ITEM_DTO updatedCartItem)
         {

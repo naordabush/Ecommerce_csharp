@@ -32,10 +32,17 @@ namespace lezioniEcommerce.API.Controllers
             return Ok(cartItem);
         }
 
+        //[HttpPost]
+        //public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> AddCartItem(WRITE_CART_ITEM_DTO cartItem)
+        //{
+        //    await _cartItemsService.AddCartItem(cartItem);
+        //    return Ok(await _cartItemsService.GetAllCartItems());
+        //}
+
         [HttpPost]
-        public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> AddCartItem(WRITE_CART_ITEM_DTO cartItem)
+        public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> AddCartItem(int cartId, int productId, int quantity)
         {
-            await _cartItemsService.AddCartItem(cartItem);
+            await _cartItemsService.AddCartItem(cartId, productId, quantity);
             return Ok(await _cartItemsService.GetAllCartItems());
         }
 
