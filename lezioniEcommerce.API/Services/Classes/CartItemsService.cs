@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.DataModel;
 using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Repos.Interfaces;
@@ -65,5 +66,10 @@ namespace lezioniEcommerce.API.Services.Classes
         {
             await _cartItemsRepository.DeleteCartItem(id);
         }
+        public async Task<List<CART_ITEMS_DETAILS_DTO>> GetCartItemsByCartId(int cartId)
+        {
+            return await _cartItemsRepository.GetCartItemsByCartId(cartId);
+        }
+
     }
 }

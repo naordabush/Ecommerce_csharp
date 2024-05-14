@@ -1,4 +1,5 @@
-﻿using lezioniEcommerce.API.DTO;
+﻿using lezioniEcommerce.API.Controllers.DataModel;
+using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -81,6 +82,17 @@ namespace lezioniEcommerce.API.Controllers
         {
             await _cartItemsService.DeleteCartItem(id);
             return Ok(await _cartItemsService.GetAllCartItems());
+        }
+
+        [HttpGet("cart/{cartId}")]
+        public async Task<ActionResult<List<CART_ITEMS_DETAILS_DTO>>> GetCartItemsByCartId(int cartId)
+        {
+            var cartItems = await _cartItemsService.GetCartItemsByCartId(cartId);
+            if (cartItems == null || cartItems.Count == 0)
+            {
+                return NotFound("No cart items found for the given cart ID.");
+            }
+            return Ok(cartItems);
         }
     }
 }

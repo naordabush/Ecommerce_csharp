@@ -40,7 +40,7 @@ namespace lezioniEcommerce.API.Repos.Classes
         {
             return await _context.CART_ITEMS
                 .Include(ci => ci.PRODUCT)
-        //        .ThenInclude(p => p.BRAND)
+        //      .ThenInclude(p => p.BRAND)
                 .Include(ci => ci.CART)
                 .ThenInclude(c => c.USER)
                 .FirstOrDefaultAsync(ci => ci.CART_ITEM_ID == id);
@@ -77,7 +77,22 @@ namespace lezioniEcommerce.API.Repos.Classes
                 .FirstOrDefaultAsync(ci => ci.CART.CART_ID == cartId && ci.PRODUCT.PRODUCT_ID == productId);
         }
 
+        public async Task<List<CART_ITEMS_DETAILS_DTO>> GetCartItemsByCartId(int cartId)
+        {
+            var cartItems = await _context.CART_ITEMS
+                .Where(ci => ci.CART.CART_ID == cartId)
+                .Include(ci => ci.PRODUCT)
+                .ToListAsync();
 
+            var cartItemDetails = cartItems.Select(ci => new CART_ITEMS_DETAILS_DTO
+            {
+                ProductName = ci.PRODUCT.PRODUCT_NAME,
+                Quantity = ci.CART_ITEM_QUANTITY,
+                Price = (decimal)ci.PRODUCT.PRODUCT_PRICE
+            }).ToList();
+
+            return cartItemDetails;
+        }
 
     }
 }

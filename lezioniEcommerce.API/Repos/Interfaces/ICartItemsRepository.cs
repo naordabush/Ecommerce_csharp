@@ -14,6 +14,6 @@ namespace lezioniEcommerce.API.Repos.Interfaces
         Task UpdateCartItem(CART_ITEMS updatedCartItem);
         Task DeleteCartItem(int id);
         Task<CART_ITEMS> GetCartItemByCartIdAndProductId(int cartId, int productId);
-
+        Task<List<CART_ITEMS_DETAILS_DTO>> GetCartItemsByCartId(int cartId);
     }
 }

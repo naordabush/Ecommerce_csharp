@@ -1,4 +1,5 @@
-﻿using lezioniEcommerce.API.DTO;
+﻿using lezioniEcommerce.API.Controllers.DataModel;
+using lezioniEcommerce.API.DTO;
 
 namespace lezioniEcommerce.API.Services.Interfaces
 {
@@ -10,6 +11,6 @@ namespace lezioniEcommerce.API.Services.Interfaces
         Task UpdateCartItem(WRITE_CART_ITEM_DTO updatedCartItem);
         Task DeleteCartItem(int id);
         Task<READ_CART_ITEM_DTO> GetCartItemByCartIdAndProductId(int cartId, int productId);
-
+        Task<List<CART_ITEMS_DETAILS_DTO>> GetCartItemsByCartId(int cartId);
     }
 }
