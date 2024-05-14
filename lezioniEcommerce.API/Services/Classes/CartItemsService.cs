@@ -44,7 +44,16 @@ namespace lezioniEcommerce.API.Services.Classes
             };
             await _cartItemsRepository.AddCartItem(cartItem);
         }
-        
+        public async Task<READ_CART_ITEM_DTO> GetCartItemByCartIdAndProductId(int cartId, int productId)
+        {
+            var cartItemEntity = await _cartItemsRepository.GetCartItemByCartIdAndProductId(cartId, productId);
+            if (cartItemEntity == null)
+            {
+                return null;
+            }
+            var cartItemDto = _mapper.Map<READ_CART_ITEM_DTO>(cartItemEntity);
+            return cartItemDto;
+        }
 
         public async Task UpdateCartItem(WRITE_CART_ITEM_DTO updatedCartItem)
         {

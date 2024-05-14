@@ -1,5 +1,6 @@
 ﻿using lezioniEcommerce.API.Controllers.DataModel;
 using lezioniEcommerce.API.DataModel;
+using lezioniEcommerce.API.DTO;
 using lezioniEcommerce.API.Repos.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,5 +68,16 @@ namespace lezioniEcommerce.API.Repos.Classes
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<CART_ITEMS> GetCartItemByCartIdAndProductId(int cartId, int productId)
+        {
+            return await _context.CART_ITEMS
+                .Include(ci => ci.CART)
+                .Include(ci => ci.PRODUCT)
+                .FirstOrDefaultAsync(ci => ci.CART.CART_ID == cartId && ci.PRODUCT.PRODUCT_ID == productId);
+        }
+
+
+
     }
 }

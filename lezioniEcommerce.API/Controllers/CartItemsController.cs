@@ -42,7 +42,23 @@ namespace lezioniEcommerce.API.Controllers
         [HttpPost]
         public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> AddCartItem(int cartId, int productId, int quantity)
         {
-            await _cartItemsService.AddCartItem(cartId, productId, quantity);
+            try
+            {
+                var existingCartItem = await _cartItemsService.GetCartItemByCartIdAndProductId(cartId, productId);
+                if (existingCartItem != null)
+                {
+                    existingCartItem.CART_ITEM_QUANTITY += quantity;
+                    await _cartItemsService.UpdateCartItem(existingCartItem);
+                }
+                else
+                {
+                    await _cartItemsService.AddCartItem(cartId, productId, quantity);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed to add cart item: {ex.Message}");
+            }
             return Ok(await _cartItemsService.GetAllCartItems());
         }
 
