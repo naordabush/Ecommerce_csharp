@@ -61,14 +61,13 @@ namespace lezioniEcommerce.API.Services.Classes
             var mappedCartItem = _mapper.Map<CART_ITEMS>(updatedCartItem);
             await _cartItemsRepository.UpdateCartItem(mappedCartItem);
         }
-
-        public async Task DeleteCartItem(int id)
-        {
-            await _cartItemsRepository.DeleteCartItem(id);
-        }
         public async Task<List<CART_ITEMS_DETAILS_DTO>> GetCartItemsByCartId(int cartId)
         {
             return await _cartItemsRepository.GetCartItemsByCartId(cartId);
+        }
+        public async Task DeleteCartItem(int cartId, int ProductId)
+        {
+            await _cartItemsRepository.DeleteCartItem(cartId, ProductId);
         }
 
     }

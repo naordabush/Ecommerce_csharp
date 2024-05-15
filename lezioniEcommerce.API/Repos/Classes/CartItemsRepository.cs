@@ -59,9 +59,12 @@ namespace lezioniEcommerce.API.Repos.Classes
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteCartItem(int id)
+        public async Task DeleteCartItem(int cartId, int productId)
         {
-            var cartItem = await _context.CART_ITEMS.FindAsync(id);
+            var cartItem = await _context.CART_ITEMS
+                .Include(ci => ci.CART)
+                .Include(ci => ci.PRODUCT)
+                .FirstOrDefaultAsync(ci => ci.CART.CART_ID == cartId && ci.PRODUCT.PRODUCT_ID == productId);
             if (cartItem != null)
             {
                 _context.CART_ITEMS.Remove(cartItem);
@@ -86,9 +89,10 @@ namespace lezioniEcommerce.API.Repos.Classes
 
             var cartItemDetails = cartItems.Select(ci => new CART_ITEMS_DETAILS_DTO
             {
+                ProductId = ci.PRODUCT.PRODUCT_ID,
                 ProductName = ci.PRODUCT.PRODUCT_NAME,
                 Quantity = ci.CART_ITEM_QUANTITY,
-                Price = (decimal)ci.PRODUCT.PRODUCT_PRICE
+                Price = ci.PRODUCT.PRODUCT_PRICE
             }).ToList();
 
             return cartItemDetails;

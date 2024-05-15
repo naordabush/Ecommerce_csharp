@@ -76,14 +76,6 @@ namespace lezioniEcommerce.API.Controllers
             }
             return Ok(await _cartItemsService.GetAllCartItems());
         }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> DeleteCartItem(int id)
-        {
-            await _cartItemsService.DeleteCartItem(id);
-            return Ok(await _cartItemsService.GetAllCartItems());
-        }
-
         [HttpGet("cart/{cartId}")]
         public async Task<ActionResult<List<CART_ITEMS_DETAILS_DTO>>> GetCartItemsByCartId(int cartId)
         {
@@ -94,5 +86,13 @@ namespace lezioniEcommerce.API.Controllers
             }
             return Ok(cartItems);
         }
+
+        [HttpDelete("cart/{cartId}/{ProductId}")]
+        public async Task<ActionResult<List<READ_CART_ITEM_DTO>>> DeleteCartItem(int cartId, int ProductId)
+        {
+            await _cartItemsService.DeleteCartItem(cartId, ProductId);
+            return Ok(await _cartItemsService.GetAllCartItems());
+        }
+
     }
 }
