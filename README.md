@@ -35,14 +35,14 @@ This ASP.NET Core Web API provides endpoints for managing products, brands, cate
 
 The API documentation is available using Swagger UI. After running the application, navigate to `https://localhost:<port>/swagger` to view and test the API endpoints.
 
-### Frontend
+## Frontend
 
 This Vue.js application serves as the frontend for the e-commerce platform.
 
 ### Project setup
 npm install
 
-## Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 npm run serve
 Compiles and minifies for production
 
