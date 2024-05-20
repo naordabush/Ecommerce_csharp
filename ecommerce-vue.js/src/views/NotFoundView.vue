@@ -14,6 +14,9 @@ export default {
 <style scoped>
 .not-found-container {
   text-align: center;
-  margin-top: 50px;
+  padding-top: 150px;
+  min-height: 100vh;
+  background: url("@/assets/bg_image.webp") no-repeat center center;
+  background-size: cover;
 }
 </style>
