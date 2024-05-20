@@ -22,6 +22,9 @@ namespace Ecommerce.API.Controllers.DataModel
         [Column(TypeName = "bit")]
         public bool PRODUCT_ISACTIVE { get; set; }
 
+        [Column(TypeName = "nvarchar(max)")]
+        public string PRODUCT_IMAGE { get; set; }
+
         //[Required]
         //[Column(TypeName = "int")]
         //public int BRAND_ID { get; set; }
