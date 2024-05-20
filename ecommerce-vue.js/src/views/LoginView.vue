@@ -22,6 +22,7 @@
       <router-view />
     </form>
   </div>
+  <Footer />
 </template>
 
 <script>

@@ -36,10 +36,10 @@
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
 import { ref, onMounted } from "vue";
 import { useUserStore } from "@/stores/userStore";
 
@@ -101,7 +101,6 @@ export default {
       totalAmount,
       handlePay,
       removeItem,
-      Header,
     };
   },
 };

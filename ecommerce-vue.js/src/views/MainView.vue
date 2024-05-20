@@ -35,10 +35,10 @@
       </button>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore";
@@ -102,7 +102,6 @@ export default {
       scrollToTop,
       decrementQuantity,
       incrementQuantity,
-      Header,
     };
   },
 };
@@ -142,10 +141,6 @@ export default {
   align-items: center;
   transition: transform 0.2s;
 }
-
-/* .product-card:hover {
-  transform: translateY(-5px);
-} */
 
 .product-image {
   width: 100%;
@@ -251,9 +246,9 @@ button:hover {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #3e8050;
+  background-color: #72be86;
   color: #fff;
-  border: none;
+  border: 3px solid #cccaca;
   cursor: pointer;
   display: flex;
   justify-content: center;

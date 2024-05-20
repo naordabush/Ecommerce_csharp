@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import { createPinia } from "pinia";
 import axios from "axios";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -12,6 +13,7 @@ const app = createApp(App);
 app.use(pinia);
 app.use(router);
 app.component("Header", Header);
+app.component("Footer", Footer);
 // Set the base URL for Axios
 axios.defaults.baseURL = "https://api.example.com"; // Replace with your API base URL
 
