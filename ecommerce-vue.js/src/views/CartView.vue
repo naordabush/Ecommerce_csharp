@@ -85,7 +85,7 @@ export default {
     onMounted(fetchCartItems);
 
     const removeItem = async (item) => {
-      console.log("Removing item:", item);
+      //  console.log("Removing item:", item);
       try {
         const response = await fetch(
           `https://localhost:7256/api/CartItems/cart/${userStore.$state.cart_id}/${item.ProductId}`,

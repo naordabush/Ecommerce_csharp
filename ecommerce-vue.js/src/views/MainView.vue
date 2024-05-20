@@ -2,7 +2,16 @@
   <div class="main-page">
     <h1 class="page-title">Products</h1>
     <div class="product-cards">
-      <div v-for="product in products" :key="product.id" class="product-card">
+      <div
+        v-for="product in products"
+        :key="product.PRODUCT_ID"
+        class="product-card"
+      >
+        <img
+          :src="product.PRODUCT_IMAGE"
+          alt="Product Image"
+          class="product-image"
+        />
         <div class="product-details">
           <h2>{{ product.PRODUCT_NAME }}</h2>
           <p>{{ product.PRODUCT_DESCRIPTION }}</p>
@@ -152,6 +161,14 @@ export default {
   transform: translateY(-5px);
 }
 
+.product-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
 .product-details h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -256,7 +273,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s;
-  padding-left: 10px;
+  padding-left: 11px;
 }
 
 .back-to-top:hover {
@@ -267,5 +284,4 @@ button:hover {
 .fas {
   margin-left: 10px;
 }
-
 </style>
