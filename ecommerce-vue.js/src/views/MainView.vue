@@ -70,7 +70,7 @@ export default {
           },
         });
         if (response.ok) {
-          console.log("Product added to cart successfully:", product);
+          //     console.log("Product added to cart successfully:", product);
         } else {
           console.error("Failed to add product to cart:", response.statusText);
         }
@@ -90,7 +90,7 @@ export default {
     };
 
     const scrollToTop = () => {
-      console.log("Scroll To Top");
+      // console.log("Scroll To Top");
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
@@ -111,8 +111,9 @@ export default {
 <style scoped>
 .main-page {
   padding: 20px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   min-height: 100vh;
+  background: url("@/assets/bg_image.webp") no-repeat center center;
+  background-size: cover;
 }
 
 .page-title {
@@ -121,6 +122,7 @@ export default {
   color: #3e8050;
   text-align: center;
   margin-bottom: 30px;
+  padding-top: 10px;
 }
 
 .product-cards {
@@ -141,9 +143,9 @@ export default {
   transition: transform 0.2s;
 }
 
-.product-card:hover {
+/* .product-card:hover {
   transform: translateY(-5px);
-}
+} */
 
 .product-image {
   width: 100%;

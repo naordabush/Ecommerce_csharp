@@ -97,8 +97,9 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   padding: 20px;
+  background: url("@/assets/bg_image.webp") no-repeat center center;
+  background-size: cover;
 }
 
 .title {

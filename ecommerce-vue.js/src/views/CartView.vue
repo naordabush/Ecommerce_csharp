@@ -41,7 +41,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore";
 
 export default {
@@ -114,12 +113,16 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  background: url("@/assets/bg_image.webp") no-repeat center center;
+  background-size: cover;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   color: #3e8050;
+  padding-top: 20px;
 }
 
 .table {
@@ -127,6 +130,7 @@ h1 {
   border-collapse: collapse;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .table th,

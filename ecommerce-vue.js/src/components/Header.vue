@@ -1,7 +1,7 @@
 <template>
   <header class="app-header">
-    <div class="left">
-      <span>{{ userName }}</span>
+    <div class="fullname">
+      <span><i class="fa-solid fa-circle-user"></i> {{ userName }}</span>
     </div>
     <div class="right">
       <button v-if="showBackButton" @click="goBack">
@@ -76,8 +76,19 @@ export default {
   align-items: center;
 }
 
-.app-header .left {
+.app-header {
   flex: 1;
+  text-align: left;
+}
+.fullname {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .app-header .right {
