@@ -1,47 +1,44 @@
 <template>
-  <div class="main-page">
-    <h1 class="page-title">Products</h1>
-    <div class="product-cards">
-      <div
-        v-for="product in products"
-        :key="product.PRODUCT_ID"
-        class="product-card"
-      >
-        <img
-          :src="product.PRODUCT_IMAGE"
-          alt="Product Image"
-          class="product-image"
-        />
-        <div class="product-details">
-          <h2>{{ product.PRODUCT_NAME }}</h2>
-          <p>{{ product.PRODUCT_DESCRIPTION }}</p>
-          <p>Price: ${{ product.PRODUCT_PRICE }}</p>
-          <div class="quantity-control">
-            <button @click="decrementQuantity(product)">-</button>
-            <span>{{ product.quantity }}</span>
-            <button @click="incrementQuantity(product)">+</button>
+  <div>
+    <Header />
+    <div class="main-page">
+      <h1 class="page-title">Products</h1>
+      <div class="product-cards">
+        <div
+          v-for="product in products"
+          :key="product.PRODUCT_ID"
+          class="product-card"
+        >
+          <img
+            :src="product.PRODUCT_IMAGE"
+            alt="Product Image"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h2>{{ product.PRODUCT_NAME }}</h2>
+            <p>{{ product.PRODUCT_DESCRIPTION }}</p>
+            <p>Price: ${{ product.PRODUCT_PRICE }}</p>
+            <div class="quantity-control">
+              <button @click="decrementQuantity(product)">-</button>
+              <span>{{ product.quantity }}</span>
+              <button @click="incrementQuantity(product)">+</button>
+            </div>
+            <button @click="addToCart(product, product.quantity)">
+              Add to Cart
+            </button>
           </div>
-          <button @click="addToCart(product, product.quantity)">
-            Add to Cart
-          </button>
         </div>
       </div>
+
+      <button class="back-to-top" @click="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </div>
-    <button class="cart-button" @click="goToCart">
-      Cart
-      <i class="fa fa-shopping-cart"></i>
-    </button>
-    <button class="logout-button" @click="logout">
-      Logout
-      <i class="fa fa-sign-out"></i>
-    </button>
-    <button class="back-to-top" @click="scrollToTop">
-      <i class="fas fa-arrow-up"></i>
-    </button>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore";
@@ -92,18 +89,6 @@ export default {
       product.quantity++;
     };
 
-    const logout = () => {
-      sessionStorage.removeItem("token");
-      userStore.clearUser();
-      console.log("Logging out...");
-      router.push("/");
-    };
-
-    const goToCart = () => {
-      console.log("Navigating to cart page...");
-      router.push("/cart");
-    };
-
     const scrollToTop = () => {
       console.log("Scroll To Top");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -114,11 +99,10 @@ export default {
     return {
       products,
       addToCart,
-      logout,
-      goToCart,
       scrollToTop,
       decrementQuantity,
       incrementQuantity,
+      Header,
     };
   },
 };

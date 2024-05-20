@@ -1,49 +1,51 @@
 <template>
-  <div class="container">
-    <h1>My Cart</h1>
+  <div>
+    <Header />
+    <div class="container">
+      <h1>My Cart</h1>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Item</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total Price</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in cartItems" :key="item.id">
-          <td>{{ index + 1 }}</td>
-          <td>{{ item.ProductName }}</td>
-          <td>{{ item.Price }}</td>
-          <td>{{ item.Quantity }}</td>
-          <td>{{ item.Price * item.Quantity }}</td>
-          <td>
-            <button @click="removeItem(item)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in cartItems" :key="item.id">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.ProductName }}</td>
+            <td>{{ item.Price }}</td>
+            <td>{{ item.Quantity }}</td>
+            <td>{{ item.Price * item.Quantity }}</td>
+            <td>
+              <button @click="removeItem(item)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="button-container">
-      <button class="button logout" @click="handleBack">Back</button>
-      <button class="button pay" @click="handlePay">
-        {{ `Pay ${totalAmount}$` }}
-      </button>
+      <div class="button-container">
+        <button class="button pay" @click="handlePay">
+          {{ `Pay ${totalAmount}$` }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore";
 
 export default {
   setup() {
-    const router = useRouter();
     const cartItems = ref([]);
     const totalAmount = ref(0);
     const userStore = useUserStore();
@@ -58,7 +60,6 @@ export default {
         }
         const data = await response.json();
         cartItems.value = data;
-        //  console.log("Fetched cart items:", cartItems.value);
         calculateTotalAmount(data);
       } catch (error) {
         console.error("Error fetching cart items:", error);
@@ -73,11 +74,6 @@ export default {
       );
     };
 
-    const handleBack = () => {
-      console.log("Go Back...");
-      router.go(-1);
-    };
-
     const handlePay = () => {
       console.log("Payment completed!");
     };
@@ -85,7 +81,6 @@ export default {
     onMounted(fetchCartItems);
 
     const removeItem = async (item) => {
-      //  console.log("Removing item:", item);
       try {
         const response = await fetch(
           `https://localhost:7256/api/CartItems/cart/${userStore.$state.cart_id}/${item.ProductId}`,
@@ -105,9 +100,9 @@ export default {
     return {
       cartItems,
       totalAmount,
-      handleBack,
       handlePay,
       removeItem,
+      Header,
     };
   },
 };

@@ -65,8 +65,12 @@ export default {
 
           sessionStorage.setItem("token", token);
 
-          userStore.updateUser(data.CART_ID, data.TOKEN);
-
+          userStore.updateUser(
+            data.CART_ID,
+            data.TOKEN,
+            data.USER_FIRSTNAME,
+            data.USER_LASTNAME
+          );
           router.push("/main");
           getProducts();
         } else {

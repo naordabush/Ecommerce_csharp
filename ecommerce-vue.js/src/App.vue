@@ -1,11 +1,11 @@
 <template>
   <!-- for testing purposes -->
-  <!-- <nav>
+  <nav>
     <router-link to="/">Sign In</router-link> |
     <router-link to="/Signup">Sign Up</router-link> |
     <router-link to="/main">Main</router-link> |
     <router-link to="/cart">Cart</router-link>
-  </nav> -->
+  </nav>
   <router-view />
 </template>
 <style>
@@ -17,7 +17,8 @@
   color: #2c3e50;
 }
 /* for testing purposes: */
-/* nav {
+nav {
+  margin-top: 100px;
   padding: 30px;
 }
 
@@ -28,5 +29,5 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
-} */
+}
 </style>
